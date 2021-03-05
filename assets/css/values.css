@@ -1,0 +1,131 @@
+:root {
+  /* colors */
+  --primery-color: #aa7df2;
+  --secendry-primery-color: #f97f8b;
+  --third-primery-color: #6d7181;
+  --white-color: #ffffff;
+  --black-color: #000;
+
+  /* border */
+  --border-radius-5: 5px;
+  --border-radius-8: 8px;
+  --border-radius-10: 10px;
+  --border-radius-15: 15px;
+  --border-purple-1: solid var(--primery-color) 1px;
+  --border-red-1: solid var(--secendry-primery-color) 1px;
+  --border-purple-2: solid var(--primery-color) 2px;
+  --border-red-2: solid var(--secendry-primery-color) 2px;
+  --box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
+  /* font-color */
+  --subtitle-color: #a1a2a7;
+  --title-color: #434550;
+  --information-color: #696a73;
+  /* font size */
+  --font-size-10: 10px;
+  --font-size-12: 12px;
+  --font-size-14: 14px;
+  --font-size-16: 16px;
+  --font-size-18: 18px;
+  --font-size-20: 20px;
+  --font-size-24: 24px;
+  --font-size-25: 25px;
+  --font-size-26: 26px;
+  --font-size-28: 28px;
+  --font-size-30: 30px;
+  --font-size-34: 34px;
+  --font-size-38: 38px;
+}
+
+.font-size-10 {
+  font-size: var(--font-size-10) !important;
+}
+.font-size-12 {
+  font-size: var(--font-size-12) !important;
+}
+.font-size-14 {
+  font-size: var(--font-size-14) !important;
+}
+.font-size-16 {
+  font-size: var(--font-size-16) !important;
+}
+.font-size-18 {
+  font-size: var(--font-size-18) !important;
+}
+.font-size-20 {
+  font-size: var(--font-size-20) !important;
+}
+.font-size-25 {
+  font-size: var(--font-size-25) !important;
+}
+.font-size-24 {
+  font-size: var(--font-size-24) !important;
+}
+.font-size-26 {
+  font-size: var(--font-size-26) !important;
+}
+.font-size-28 {
+  font-size: var(--font-size-28) !important;
+}
+.font-size-30 {
+  font-size: var(--font-size-30) !important;
+}
+.font-size-34 {
+  font-size: var(--font-size-34) !important;
+}
+.font-size-38 {
+  font-size: var(--font-size-38) !important;
+}
+/* border */
+.border-radius-5 {
+  border-radius: 5px !important;
+}
+.border-radius-8 {
+  border-radius: 8px !important;
+}
+.border-radius-10 {
+  border-radius: 10px !important;
+}
+.border-radius-15 {
+  border-radius: 15px !important;
+}
+
+.border-radius-30 {
+  border-radius: 30px !important;
+}
+/* border */
+.border-purple {
+  border: var(--border-purple);
+}
+.border-red {
+  border: var(--border-red);
+}
+.box-shadow {
+  box-shadow: var(--box-shadow);
+}
+
+.subtitle-color {
+  color: var(--subtitle-color);
+}
+
+.title-color {
+  color: var(--title-color);
+}
+
+.information-color {
+  color: var(--information-color);
+}
+
+.purpue-color {
+  color: var(--primery-color);
+}
+
+.red-color {
+  color: var(--secendry-primery-color);
+}
+
+.white-color {
+  color: var(--white-color);
+}
+
+
+
