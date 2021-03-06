@@ -32,10 +32,13 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
+    'cookie-universal-nuxt',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: 'http://localhost:9788/site/admin',
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

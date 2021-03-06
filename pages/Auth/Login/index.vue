@@ -10,8 +10,8 @@
                 type="email"
                 placeholder="ایمیل"
                 class="py-4"
-                v-model="user.email"
-                @focus="stausValidation.email = true"
+                v-model="user.username"
+                @focus="stausValidation.username = true"
                 :state="IsEmailInputValid()"
               >
               </b-input>
@@ -43,6 +43,15 @@
               >بازگشت به سایت</nuxt-link
             >
           </div>
+          <div>
+            <b-modal ref="bv-unAuthorized-modal" hide-footer hide-header-close>
+              <template #modal-title> خطا </template>
+              <div class="d-block text-center">
+                <h3>ایمیل یا رمز عبور وارد شده اشتباه است</h3>
+              </div>
+              <b-button class="mt-3" block @click="hideModal()">بستن</b-button>
+            </b-modal>
+          </div>
         </b-col>
       </b-row>
     </b-container>
@@ -51,14 +60,18 @@
 
 <script>
 export default {
+  async asyncData({ context, store }) {
+    await console.log(store.state.token)
+    return { token: store.state.token }
+  },
   data() {
     return {
       user: {
-        email: '',
+        username: '',
         password: '',
       },
       stausValidation: {
-        email: null,
+        username: null,
         password: null,
       },
     }
@@ -69,8 +82,8 @@ export default {
     },
     emailValidation() {
       var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      if (this.user.email == '') return false
-      if (re.test(this.user.email)) return true
+      if (this.user.username == '') return false
+      if (re.test(this.user.username)) return true
       else return false
     },
     IsFormValid() {
@@ -79,9 +92,20 @@ export default {
     },
   },
   methods: {
-    onSubmit() {},
+    async onSubmit() {
+      await this.$store.dispatch('login', this.user)
+      if (this.$store.state.auth.statusCode == 401) {
+        this.showModal()
+      }
+    },
+    hideModal() {
+      this.$refs['bv-unAuthorized-modal'].hide()
+    },
+    showModal() {
+      this.$refs['bv-unAuthorized-modal'].show()
+    },
     IsEmailInputValid() {
-      if (this.stausValidation.email == null) return null
+      if (this.stausValidation.username == null) return null
       else return this.emailValidation
     },
     IsPasswordInputValid() {
