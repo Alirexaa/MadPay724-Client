@@ -2,7 +2,7 @@
   <div class="login-page">
     <b-container>
       <b-row align-h="center">
-        <b-col cols="6">
+        <b-col cols="12" md="9" sm="9" lg="6">
           <b-form class="px-5" @submit.prevent="onSubmit()">
             <h1 class="font-size-30 white-color mb-3">ورود</h1>
             <b-form-group invalid-feedback=" فرمت ایمیل وارد شده صحیح نیست ">
