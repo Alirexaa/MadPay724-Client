@@ -27,7 +27,11 @@
               >
               </b-input>
             </b-form-group>
-
+            <b-form-group>
+              <b-form-checkbox v-model="user.isRemember" class="float-right">
+                مرا به خاطر بسپار
+              </b-form-checkbox>
+            </b-form-group>
             <b-button class="py-2" type="submit" :disabled="!IsFormValid">
               ورود
             </b-button>
@@ -60,15 +64,12 @@
 
 <script>
 export default {
-  async asyncData({ context, store }) {
-    await console.log(store.state.token)
-    return { token: store.state.token }
-  },
   data() {
     return {
       user: {
         username: '',
         password: '',
+        isRemember: true,
       },
       stausValidation: {
         username: null,
