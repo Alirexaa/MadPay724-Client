@@ -32,9 +32,7 @@
                 مرا به خاطر بسپار
               </b-form-checkbox>
             </b-form-group>
-            <b-button class="py-2" type="submit" :disabled="!IsFormValid">
-              ورود
-            </b-button>
+            <b-button class="py-2" type="submit"> ورود </b-button>
             <nuxt-link class="mt-3" to="/auth/forgetpassword"
               >رمز عبور خود را فراموش کرده اید ؟
             </nuxt-link>
@@ -47,15 +45,7 @@
               >بازگشت به سایت</nuxt-link
             >
           </div>
-          <div>
-            <b-modal ref="bv-unAuthorized-modal" hide-footer hide-header-close>
-              <template #modal-title> خطا </template>
-              <div class="d-block text-center">
-                <h3>ایمیل یا رمز عبور وارد شده اشتباه است</h3>
-              </div>
-              <b-button class="mt-3" block @click="hideModal()">بستن</b-button>
-            </b-modal>
-          </div>
+          <div></div>
         </b-col>
       </b-row>
     </b-container>
@@ -94,20 +84,42 @@ export default {
   },
   methods: {
     async onSubmit() {
-      await this.$store.dispatch('login', this.user)
-      if (this.$store.state.auth.statusCode == 401) {
-        this.showModal()
+      if (!this.IsFormValid) {
+        this.$toast.show({
+          message: 'اطلاعات فرم را به درستی وارد کنید',
+          title: 'خطا',
+          timeOut: 3000,
+          classToast: 'bg-red-500 text-right',
+          classTimeout: 'bg-gray-800 ',
+          classTitle: 'text-white',
+          classMessage: 'text-white',
+          classClose: 'text-white',
+        })
         return
       }
+
+      await this.$store.dispatch('login', this.user)
       if (this.$store.state.auth.statusCode == 200) {
         this.$router.push('/')
+      } else if (this.$store.state.auth.statusCode == 401) {
+        this.$toast.show({
+          message: 'کاربری با این ایمیل و رمز عبور وجود ندارد',
+          type: 'danger',
+          title: 'خطا',
+          timeOut: 3000,
+          classToast: 'bg-gray-100 text-right',
+          classTimeout: 'bg-gray-800 ',
+        })
+      } else {
+        this.$toast.show({
+          message: 'خطایی رخ داده است بعدا وارد شوید',
+          type: 'danger',
+          title: 'خطا',
+          timeOut: 3000,
+          classToast: 'bg-gray-100 text-right',
+          classTimeout: 'bg-gray-800 ',
+        })
       }
-    },
-    hideModal() {
-      this.$refs['bv-unAuthorized-modal'].hide()
-    },
-    showModal() {
-      this.$refs['bv-unAuthorized-modal'].show()
     },
     IsEmailInputValid() {
       if (this.stausValidation.username == null) return null

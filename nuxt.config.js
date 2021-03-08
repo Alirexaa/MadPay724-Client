@@ -11,11 +11,14 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@/assets/css/font.css', '@/assets/css/values.css'],
+  css: [
+    '@/assets/css/font.css',
+    '@/assets/css/values.css',
+    '@/assets/css/main.css',
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
-
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -33,12 +36,24 @@ export default {
     '@nuxt/content',
 
     'cookie-universal-nuxt',
+
     'nuxt-fontawesome',
+    ['nuxt-tailvue', { toast: true }],
   ],
 
   bootstrapVue: {
     icons: true,
   },
+
+  // lodaing bar on request
+  loading: {
+    color: '#ff5000',
+    height: '4px',
+    duration: 5000,
+  },
+
+  // transition: 'page',
+  transition: { name: 'fade', mode: 'out-in' },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

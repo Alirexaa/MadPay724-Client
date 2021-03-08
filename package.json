@@ -23,9 +23,8 @@
     "fontawesome": "^5.6.3",
     "nuxt": "^2.14.12",
     "nuxt-fontawesome": "^0.4.0",
-    "sass": "^1.32.8",
-    "vee-validate": "^3.4.5",
-    "vuelidate": "^0.7.6"
+    "nuxt-tailvue": "^1.0.68",
+    "sass": "^1.32.8"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^3.4.2",
