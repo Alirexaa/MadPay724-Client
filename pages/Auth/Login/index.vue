@@ -97,7 +97,9 @@ export default {
       await this.$store.dispatch('login', this.user)
       if (this.$store.state.auth.statusCode == 401) {
         this.showModal()
+        return
       }
+      this.$router.push('/')
     },
     hideModal() {
       this.$refs['bv-unAuthorized-modal'].hide()

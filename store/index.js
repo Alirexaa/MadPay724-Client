@@ -60,6 +60,14 @@ export default () => {
         }
       },
       async logout({ commit }) {
+        if (process.client) {
+          if (await localStorage.getItem('token')) {
+            await localStorage.removeItem('token')
+          }
+        }
+        if (await this.$cookies.get('jwt')) {
+          await this.$cookies.remove('jwt')
+        }
         commit(CLEAN_TOKEN)
       },
       async register({ commit }, user) {
@@ -103,7 +111,41 @@ export default () => {
           console.log(error)
         }
       },
+      async initAuth({ commit }, request) {
+        let token
+        if (request) {
+          if (!request.headers.cookie) {
+            console.log('cookie is null')
+            return
+          }
+          const jwt = request.headers.cookie
+            .split(';')
+            .find((c) => c.trim().startsWith('jwt='))
+          console.log('jwt', jwt)
+          if (!jwt) {
+            console.log('jwt is null')
+            return
+          }
+          token = jwt.split('=')[1]
+          console.log('token', token)
+        } else {
+          if (process.client) {
+            token = localStorage.getItem('token')
+            console.log('token in localstorage', token)
+          }
+          if (!token) {
+            console.log('token in localstorage is empty')
+
+            return
+          }
+        }
+        await commit(SET_TOKEN, { token, stausCode: 200 })
+      },
     },
-    getters: {},
+    getters: {
+      isAuthenticated(state) {
+        return state.auth.token
+      },
+    },
   })
 }
