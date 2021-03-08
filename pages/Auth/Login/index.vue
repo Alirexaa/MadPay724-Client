@@ -99,7 +99,9 @@ export default {
         this.showModal()
         return
       }
-      this.$router.push('/')
+      if (this.$store.state.auth.statusCode == 200) {
+        this.$router.push('/')
+      }
     },
     hideModal() {
       this.$refs['bv-unAuthorized-modal'].hide()

@@ -23,13 +23,13 @@ export default () => {
           let url = 'auth/login'
           const response = await this.$axios.post(url, user)
           let token = response.data.token
-          let stausCode = 200
+          let statusCode = 200
 
           if (process.client) {
             await localStorage.setItem('token', token)
           }
           await this.$cookies.set('jwt', token)
-          commit(SET_TOKEN, { token, stausCode })
+          await commit(SET_TOKEN, { token, statusCode })
         } catch (error) {
           if (error.response) {
             /*
@@ -139,7 +139,8 @@ export default () => {
             return
           }
         }
-        await commit(SET_TOKEN, { token, stausCode: 200 })
+        let statusCode = 200
+        await commit(SET_TOKEN, { token, statusCode })
       },
     },
     getters: {
