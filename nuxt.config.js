@@ -39,6 +39,7 @@ export default {
 
     'nuxt-fontawesome',
     ['nuxt-tailvue', { toast: true }],
+    '@nuxtjs/auth-next',
   ],
 
   bootstrapVue: {
