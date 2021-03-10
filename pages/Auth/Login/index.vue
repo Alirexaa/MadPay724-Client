@@ -100,6 +100,7 @@ export default {
 
       await this.$store.dispatch('login', this.user)
       if (this.$store.state.auth.statusCode == 200) {
+        await this.$store.dispatch('decodeToken')
         this.$router.push('/')
       } else if (this.$store.state.auth.statusCode == 401) {
         this.$toast.show({

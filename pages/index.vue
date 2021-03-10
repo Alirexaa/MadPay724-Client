@@ -12,13 +12,6 @@ export default {
   middleware: ['check-auth', 'isAuthenticated'],
   components: {
     BarChart,
-    LineChart,
-    BubbleChart,
-    DoughnutChart,
-    PieChart,
-    PolarAreaChart,
-    RadarChart,
-    ScatterChart,
   },
   data() {
     return {

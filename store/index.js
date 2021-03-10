@@ -1,11 +1,13 @@
 import Vuex from 'vuex'
-import { SET_TOKEN, REGISTER, CLEAN_TOKEN } from '@/store/types'
+import { SET_TOKEN, REGISTER, CLEAN_TOKEN, DECODE_TOKEN } from '@/store/types'
+import jwt_decode from 'jwt-decode'
 export default () => {
   return new Vuex.Store({
     state: {
       auth: {
         token: null,
         statusCode: null,
+        decodedToken: null,
       },
     },
     mutations: {
@@ -15,6 +17,9 @@ export default () => {
       },
       [CLEAN_TOKEN](state) {
         state.auth.token = null
+      },
+      [DECODE_TOKEN](state, decodeToken) {
+        state.auth.decodedToken = decodeToken
       },
     },
     actions: {
@@ -141,6 +146,11 @@ export default () => {
         }
         let statusCode = 200
         await commit(SET_TOKEN, { token, statusCode })
+      },
+      async decodeToken({ commit, state }) {
+        let decodedToken = jwt_decode(state.auth.token)
+        console.log(decodedToken)
+        commit(DECODE_TOKEN, decodedToken)
       },
     },
     getters: {
