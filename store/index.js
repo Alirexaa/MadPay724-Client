@@ -25,9 +25,7 @@ export default () => {
     actions: {
       async login({ commit }, user) {
         try {
-          let url = 'auth/login'
-          const response = await this.$axios.post(url, user)
-          let token = response.data.token
+          let token = await this.$authService.login(user)
           let statusCode = 200
 
           if (process.client) {
@@ -77,8 +75,7 @@ export default () => {
       },
       async register({ commit }, user) {
         try {
-          let url = 'auth/register'
-          const response = await this.$axios.post(url, user)
+          const response = await this.$authService.register(user)
           // let token = response.data.token
           console.log(response)
           let statusCode = 201
