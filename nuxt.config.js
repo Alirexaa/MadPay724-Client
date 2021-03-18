@@ -18,9 +18,7 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    '@/plugins/services.plugin.js'
-  ],
+  plugins: ['@/plugins/services.plugin.js'],
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -39,9 +37,7 @@ export default {
 
     'cookie-universal-nuxt',
 
-    'nuxt-fontawesome',
     ['nuxt-tailvue', { toast: true }],
-    '@nuxtjs/auth-next',
   ],
 
   bootstrapVue: {

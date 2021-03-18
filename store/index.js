@@ -144,8 +144,8 @@ export default () => {
         let statusCode = 200
         await commit(SET_TOKEN, { token, statusCode })
       },
-      async decodeToken({ commit, state }) {
-        let decodedToken = jwt_decode(state.auth.token)
+      async decodeToken({ commit }, token) {
+        let decodedToken = jwt_decode(token)
         console.log(decodedToken)
         commit(DECODE_TOKEN, decodedToken)
       },

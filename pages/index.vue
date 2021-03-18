@@ -2,12 +2,13 @@
   <div class="container">
     <info-cards></info-cards>
     <bar-chart :data="barChartData" :options="barChartOptions" :height="200" />
+    <p class="bg-red-500 text-white text-right">{{ time | PersionTimeAgo   }}</p>
   </div>
 </template>
 
 <script>
 import BarChart from '@/components/charts/BarChart'
-
+import {PersionTimeAgo} from '~/assets/js/filters/PersionTimeAgo'
 export default {
   middleware: ['check-auth', 'isAuthenticated'],
   components: {
@@ -15,6 +16,7 @@ export default {
   },
   data() {
     return {
+      time :'2021-03-17 18:51:00',
       barChartData: {
         labels: [
           '2019-06',
@@ -85,6 +87,9 @@ export default {
     }
   },
   methods: {},
+  filters :{
+    PersionTimeAgo 
+}
 }
 </script>
 
