@@ -1,19 +1,17 @@
-
 export class AuthService {
   constructor($axios) {
     this.$axios = $axios
   }
 
   async login(user) {
-    let url = 'auth/login'
+    let url = 'site/user/v1/auth/login'
     const response = await this.$axios.post(url, user)
-    return response.data.token
+    return response.data
   }
 
-    async register(user) {
-        let url = 'auth/register'
-        const response = await this.$axios.post(url, user)
-        return response
+  async register(user) {
+    let url = 'site/user/v1/auth/register'
+    const response = await this.$axios.post(url, user)
+    return response.data
   }
 }
-
