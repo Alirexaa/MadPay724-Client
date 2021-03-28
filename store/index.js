@@ -25,11 +25,16 @@ export default () => {
     actions: {
       async login({ commit }, user) {
         try {
-          let token = await this.$authService.login(user)
+          let data = await this.$authService.login(user)
+          let token = data.token
+          let userInfo = data.user
           let statusCode = 200
 
           if (process.client) {
+            console.log('toooooooooooo')
+            console.log(userInfo)
             await localStorage.setItem('token', token)
+            await localStorage.setItem('user', JSON.stringify(userInfo))
           }
           await this.$cookies.set('jwt', token)
           await commit(SET_TOKEN, { token, statusCode })
@@ -67,6 +72,7 @@ export default () => {
           if (await localStorage.getItem('token')) {
             await localStorage.removeItem('token')
           }
+          console.log('شما خارح شددددی')
         }
         if (await this.$cookies.get('jwt')) {
           await this.$cookies.remove('jwt')
@@ -75,14 +81,14 @@ export default () => {
       },
       async register({ commit }, user) {
         try {
-          const response = await this.$authService.register(user)
-          // let token = response.data.token
-          console.log(response)
+          const data = await this.$authService.register(user)
+          let token = response.data.token
+          console.log(data)
           let statusCode = 201
-          // if (process.client) {
-          //   await localStorage.setItem('token', token)
-          // }
-          // await this.$cookies.set('jwt', token)
+          if (process.client) {
+            await localStorage.setItem('token', token)
+          }
+          await this.$cookies.set('jwt', token)
           commit(SET_TOKEN, { token: null, statusCode })
         } catch (error) {
           if (error.response) {
